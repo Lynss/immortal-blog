@@ -40,6 +40,15 @@ module.exports = {
                 loader: 'eslint-loader'
             },
             {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                query: {
+                    presets: ['react', 'es2015', 'stage-0']
+                },
+                loaders: 'babel-loader'
+
+            },
+            {
                 test: /\.s?css$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
@@ -60,9 +69,9 @@ module.exports = {
     },
     plugins: [
         // 这个使用uglifyJs压缩你的js代码
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     minimize: true
+        // }),
         //把入口文件里面的数组打包成verdors.js
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
@@ -71,7 +80,8 @@ module.exports = {
         new HtmlwebpackPlugin({
             title: 'Hello World app',
             template: path.resolve(PUBLIC_PATH, 'index.html'),
-            filename: 'templates/index.html',
+            filename: 'index.html',
+            // filename: 'templates/index.html',
             //chunks这个参数告诉插件要引用entry里面的哪几个入口
             chunks: ['app', 'vendors'],
             //要把script插入到标签里
