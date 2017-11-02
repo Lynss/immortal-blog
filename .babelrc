@@ -1,18 +1,23 @@
 {
   "presets": [
-    "es2015",
     "react",
+    "es2015",
     "stage-0"
   ],
   "plugins": [
+    [
+      "transform-class-properties",
+      {
+        "spec": true
+      }
+    ],
     [
       "import",
       {
         "libraryName": "antd",
         "style": "css"
       }
-    ],
-    ["transform-class-properties", { "spec": true }]
+    ]
   ],
   "env": {
     "development": {
