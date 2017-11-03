@@ -1,17 +1,12 @@
-import React, {Component} from "react"
-import {createStore, applyMiddleware} from 'redux'
-import {createLogger} from 'redux-logger'
-import reducer from "./reducer"
+import React from "react"
 import {syncHistoryWithStore} from 'react-router-redux'
 import {Provider} from "react-redux"
-import route from "./route"
 import {createBrowserHistory} from "history"
+import "./app.scss"
+import route from "./route"
+import configureStore from "./ducks/configureStore"
 
-
-const loggerMiddleware = createLogger()
-const store = createStore(reducer, applyMiddleware(
-    loggerMiddleware
-))
+const store = configureStore()
 const history = syncHistoryWithStore(createBrowserHistory(), store)
 
 const App = props => (

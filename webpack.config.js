@@ -42,9 +42,9 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                // query: {
-                //     presets: ['react', 'es2015', 'stage-0']
-                // },
+                query: {
+                    presets: ['react', 'es2015', 'stage-0']
+                },
                 loaders: 'babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-0'
 
             },
@@ -54,7 +54,10 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=40000'
+                options: {
+                    limit: 8192
+                },
+                loader: 'url-loader'
             },
             {
                 test: /\.jsx?$/,

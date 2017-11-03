@@ -1,17 +1,13 @@
 import {connect} from 'react-redux'
-import Login from '../component/login'
+import Login from './Login'
+import {loginAction} from "../../ducks/modules/loginDuck"
 
 const mapStateToProps = state => ({
     status: state.login.status
 })
 
-const mockAction = accessToken => ({
-    type: "login"
-})
-
-
 const mapStateToDispatch = dispatch => ({
-    handelLogin: accessToken => dispatch(mockAction(accessToken))
+    handelLogin: accessToken => dispatch(loginAction(accessToken))
 })
 
 const LoginContainer = connect(mapStateToProps, mapStateToDispatch)(Login)
