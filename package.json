@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "dev": "webpack-dev-server --progress --profile --colors --hot",
-    "build": "webpack --progress --profile --colors --config webpack.config.js",
-    "start": "yarn build && mvn springboot:run"
+    "dev": "yarn install && webpack-dev-server --progress --profile --colors --hot",
+    "build": "yarn install && webpack --progress --profile --colors --config webpack.config.js",
+    "start": "yarn install && yarn build && mvn springboot:run"
   },
   "theme": {
     "primary-color": "#d9b3ff"

@@ -1,10 +1,17 @@
 @import "../../style/center";
 .login-form {
-  max-width:300px;
-}
-
-.login-button{
-  width: 100%;
+  width: 330px;
+  min-width:300px;
+  .rememberMe{
+    display: inline;
+    color:dodgerblue;
+  }
+  .forgot{
+    left: 100%;
+    position: sticky;
+  }
+  .register{
+  }
 }
 
 body {

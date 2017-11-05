@@ -1,13 +1,16 @@
 import {connect} from 'react-redux'
 import Login from './Login'
-import {loginAction} from "../../ducks/modules/loginDuck"
+import {loginAction,toggleRegisterModalAction} from "../../ducks/modules/loginDuck"
 
 const mapStateToProps = state => ({
-    status: state.login.status
+	status: state.login.status,
+	loading: state.login.loading,
+	visible: state.login.visible
 })
 
 const mapStateToDispatch = dispatch => ({
-    handelLogin: accessToken => dispatch(loginAction(accessToken))
+	handleLogin: accessToken => dispatch(loginAction(accessToken)),
+	toggleRegisterModal:()=>dispatch(toggleRegisterModalAction())
 })
 
 const LoginContainer = connect(mapStateToProps, mapStateToDispatch)(Login)

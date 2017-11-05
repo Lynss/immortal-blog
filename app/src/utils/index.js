@@ -1,3 +1,3 @@
-import handelChange from "./handleChange"
+import handleChange from "./handleChange"
 
-export {handelChange}
+export {handleChange}

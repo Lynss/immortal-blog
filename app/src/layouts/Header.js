@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import { Layout } from 'antd';
 const { Header } = Layout;
-import "Header.scss"
+import "./Header.scss"
 
 export default class HeaderLayout extends Component {
     render(){

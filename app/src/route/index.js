@@ -7,7 +7,7 @@ const route = history => {
         <div>
             <main>
                 <BrowserRouter browserHistory={history}>
-                    <Route path={"/login"} extra component={LoginContainer}/>
+                    <Route path={"/"} extra component={LoginContainer}/>
                 </BrowserRouter>
             </main>
         </div>
