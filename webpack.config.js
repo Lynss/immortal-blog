@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlwebpackPlugin = require('html-webpack-plugin')
+
 //定义了一些文件夹的路径
 const ROOT_PATH = path.resolve(__dirname)
 const APP_PATH = path.resolve(ROOT_PATH, 'app')
@@ -34,19 +35,11 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                enforce: "pre",
-                include: APP_PATH,
-                exclude:/node_modules/,
-                loader: 'eslint-loader'
-            },
-            {
-                test: /\.jsx?$/,
                 exclude: /node_modules/,
+                loaders: 'babel-loader',
                 query: {
-                    presets: ['react', 'es2015', 'stage-0']
-                },
-                loaders: 'babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-0'
-
+                    presets: ['react', 'env', 'stage-0']
+                }
             },
             {
                 test: /\.s?css$/,
@@ -58,15 +51,6 @@ module.exports = {
                     limit: 8192
                 },
                 loader: 'url-loader'
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                include: APP_PATH,
-                query: {
-                    presets: ['es2015','react']
-                }
-
             }
         ]
     },

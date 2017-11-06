@@ -20,7 +20,7 @@ class LoginForm extends Component {
 		this.handleChange = handleChange.bind(this)
 	}
 
-	handleSubmit() {
+	handleSubmit=()=> {
 		const {handleLogin} = this.props
 		handleLogin(new AccessToken({
 			username: this.state.username,

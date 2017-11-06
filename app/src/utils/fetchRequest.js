@@ -1,3 +1,0 @@
-const fetchCommon = async(request)=>{
-
-}

@@ -6,7 +6,7 @@ import "./app.scss"
 import route from "./route"
 import configureStore from "./ducks/configureStore"
 
-const store = configureStore()
+export const store = configureStore()
 const history = syncHistoryWithStore(createBrowserHistory(), store)
 
 const App = props => (
