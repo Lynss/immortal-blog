@@ -34,15 +34,14 @@ export const loginAction = (accessToken) => async (dispatch) => {
         debugger
 
         if (replyData.code !== SUCCESS_CODE) {
-            if (response.status === HttpStatus.NO_PERMISSION) {
+            if (response.status === HttpStatus.SUCCESS) {
                 browserHistory.push("/login")
             }
             throw new ImmortalError(`login fail,for ${replyData.message}`, types.LOGIN_FAIL)
         }
         const token = response.headers.get("access_token")
         token && sessionStorage.setItem('access_token', token)
-        dispatch({type: types.LOGIN_SUCCESS, payload: replyData.data})
-        dispatch(goBack())
+	    dispatch({type: types.LOGIN_SUCCESS, payload: replyData.data})
     } catch (e) {
         e = e instanceof ImmortalError ? e : new ImmortalError(e.message, LOGIN_ERROR)
         dispatch(e.transformAction())
