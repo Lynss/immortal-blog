@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
-import {BASE_API_URL, LOGIN_ERROR, SUCCESS_CODE} from "../../constants/index"
+import {BASE_API_URL, HttpStatus, LOGIN_ERROR, SUCCESS_CODE} from "../../constants/index"
 import {goBack} from 'react-router-redux'
 import {ImmortalError} from "../../models/index"
+import {browserHistory} from 'react-router'
 
 const types = {
     BEGIN_LOGIN: "immortal-blog/login/beginLogin",
@@ -11,26 +12,36 @@ const types = {
 }
 
 export const loginAction = (accessToken) => async (dispatch) => {
-    dispatch(types.BEGIN_LOGIN)
+    dispatch({type: types.BEGIN_LOGIN})
     const url = BASE_API_URL + "/user"
     const request = new Request(
         url, {
-            method: "GET",
+            method: "POST",
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Token": sessionStorage.getItem('access_token') || ""
             }),
             body: JSON.stringify(accessToken),
         }
     )
     try {
         const response = await fetch(request)
+        debugger
         if (!response.ok) {
             throw new ImmortalError(`http request fail,http status:${response.status}`, types.LOGIN_FAIL)
         }
         const replyData = await response.json()
+        debugger
+
         if (replyData.code !== SUCCESS_CODE) {
+            if (response.status === HttpStatus.NO_PERMISSION) {
+                browserHistory.push("/login")
+            }
             throw new ImmortalError(`login fail,for ${replyData.message}`, types.LOGIN_FAIL)
         }
+        const token = response.headers.get("access_token")
+        token && sessionStorage.setItem('access_token', token)
+        dispatch({type: types.LOGIN_SUCCESS, payload: replyData.data})
         dispatch(goBack())
     } catch (e) {
         e = e instanceof ImmortalError ? e : new ImmortalError(e.message, LOGIN_ERROR)
@@ -46,7 +57,9 @@ export const toggleRegisterModalAction = () => ({
 const initialState = {
     status: "fail",
     visible: false,
-    loading: false
+    loading: false,
+    isLogin: false,
+    loginMessage: ""
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -54,8 +67,27 @@ export default function reducer(state = initialState, action = {}) {
         case types.BEGIN_LOGIN:
             return {
                 ...state,
-                status: state.status === "success" ? "false" : "success",
-                loading: !state.loading
+                loading: true,
+                loginMessage: action.payload
+            }
+        case types.LOGIN_FAIL:
+            return {
+                ...state,
+                loading: false,
+                loginMessage: action.payload
+            }
+        case types.LOGIN_SUCCESS:
+            return {
+                ...state,
+                isLogin: true,
+                loading: false,
+                loginMessage: action.payload
+            }
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                loading: false,
+                loginMessage: action.payload
             }
         case types.TOGGLE_REGISTER_MODAL:
             return {

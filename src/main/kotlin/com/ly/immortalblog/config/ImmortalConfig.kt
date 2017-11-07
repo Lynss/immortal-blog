@@ -17,7 +17,6 @@ class ImmortalConfig {
     /**
      *spring-task多线程配置
      */
-    @Bean
     fun configureTasks() {
         taskRegistrar().setScheduler(taskExecutor())
     }

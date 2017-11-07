@@ -6,7 +6,7 @@
 
 <generatorConfiguration>
     <!--导入属性配置-->
-    <properties resource="application-home.properties"/>
+    <properties resource="application-work.properties"/>
 
     <!--指定特定数据库的jdbc驱动jar包的位置-->
     <classPathEntry location="${spring.datasource.location}"/>

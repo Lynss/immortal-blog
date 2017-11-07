@@ -1,8 +1,13 @@
 package com.ly.immortalblog.controller
 
-import org.springframework.web.bind.annotation.GetMapping
+import com.ly.immortalblog.domain.ImmortalResult
+import com.ly.immortalblog.domain.constant.enums.ImmortalExceptionEnum
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpServletRequest
+
 
 /**
  * @author ly
@@ -10,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api")
 class ApiController {
-    @GetMapping("/user")
-    //在这一步使用spring security 进行权限的认证(实际目的)认证通过后返回用户的角色信息
-    fun getUserInfo() {
-
+    @PostMapping("/user")
+    fun getUserInfo(@RequestBody map:Map<String,Any> ,httpServletRequest: HttpServletRequest):ImmortalResult<Void>{
+        for (entry in map) {
+            println("${entry.key}:${entry.value}")
+        }
+        return ImmortalResult(ImmortalExceptionEnum.IMMORTAL_SUCCESS)
     }
 }

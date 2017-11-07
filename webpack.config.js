@@ -23,13 +23,7 @@ module.exports = {
         hot: true,
         inline: true,
         progress: true,
-        proxy: {
-            '/api/*': {
-                target: 'http://localhost:8080',
-                secure: false
-            }
-        },
-        port: 8022
+        port: 3000
     },
     module: {
         loaders: [

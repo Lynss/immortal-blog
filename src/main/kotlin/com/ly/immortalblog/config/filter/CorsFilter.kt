@@ -20,7 +20,7 @@ class CorsFilter : Filter {
         response.setHeader("Access-Control-Allow-Methods",
                 "POST, GET, OPTIONS, DELETE")
         response.setHeader("Access-Control-Allow-Headers",
-                "Content-Type, x-requested-with, X-Custom-Header, Authorization")
+                "Content-Type, x-requested-with, X-Custom-Header, Authorization,Access-Token")
         chain.doFilter(req, res)
     }
 
