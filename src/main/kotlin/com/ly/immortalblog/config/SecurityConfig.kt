@@ -20,20 +20,21 @@ class SecurityConfig(val immortalUserDetailsServiceImpl: UserDetailsService) : W
 
     override fun configure(http: HttpSecurity?) {
         val jwtLoginFilter = JWTLoginFilter()
-        jwtLoginFilter.setRequiresAuthenticationRequestMatcher(AntPathRequestMatcher("/api/user", "POST"))
+        jwtLoginFilter.setRequiresAuthenticationRequestMatcher(AntPathRequestMatcher("/api/login", "POST"))
         jwtLoginFilter.setAuthenticationManager(authenticationManager())
 
-        http!!.authorizeRequests()
+        http!!
+                .csrf().disable()
+                .httpBasic()
+                .and()
+                .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/api/**").authenticated()
-                .and()
-                .httpBasic()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
                 .and()
                 .addFilter(jwtLoginFilter)
                 .addFilter(JWTAuthenticationFilter(authenticationManager()))
-                .csrf().disable()
     }
 }

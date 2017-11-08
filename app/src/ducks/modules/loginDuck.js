@@ -12,7 +12,7 @@ const types = {
 
 export const loginAction = (accessToken) => async (dispatch) => {
     dispatch({type: types.BEGIN_LOGIN})
-    const url = BASE_API_URL + "/user"
+    const url = BASE_API_URL + "/login"
     const request = new Request(
         url, {
             method: "POST",

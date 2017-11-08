@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest
 @RestController
 @RequestMapping("/api")
 class ApiController {
-    @PostMapping("/user")
+    @PostMapping("/login")
     fun getUserInfo(@RequestBody map:Map<String,Any> ,httpServletRequest: HttpServletRequest):ImmortalResult<Void>{
         for (entry in map) {
             println("${entry.key}:${entry.value}")

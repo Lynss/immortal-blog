@@ -73,7 +73,7 @@ public interface BasUserMapper {
         "select",
         "id, username, password, sex, role",
         "from bas_user",
-        "where id = #{username,jdbcType=VARCHAR}"
+        "where username = #{username,jdbcType=VARCHAR}"
     })
     @ConstructorArgs({
         @Arg(column="id", javaType=Integer.class, jdbcType=JdbcType.INTEGER, id=true),
