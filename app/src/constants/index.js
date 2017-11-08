@@ -1,5 +1,5 @@
 //全局的rest请求前缀
-const BASE_API_URL = "http://localhost:8080/api"
+const BASE_API_URL = "http://localhost:80/api"
 //全局的请求成功code
 const SUCCESS_CODE = 200
 //全局的异常type

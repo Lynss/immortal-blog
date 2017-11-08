@@ -7,6 +7,7 @@ export class AccessToken {
     }
 }
 
+
 //创建自定义异常对象
 export class ImmortalError extends Error {
     constructor(message, type, id) {

@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
 import {BASE_API_URL, HttpStatus, LOGIN_ERROR, SUCCESS_CODE} from "../../constants/index"
-import {goBack} from 'react-router-redux'
 import {ImmortalError} from "../../models/index"
 import {browserHistory} from 'react-router'
 
@@ -19,7 +18,7 @@ export const loginAction = (accessToken) => async (dispatch) => {
             method: "POST",
             headers: new Headers({
                 'Content-Type': 'application/json',
-                "Access-Token": sessionStorage.getItem('access_token') || ""
+                "Authorization": sessionStorage.getItem('Authorization') || "lueluelue"
             }),
             body: JSON.stringify(accessToken),
         }
@@ -31,18 +30,15 @@ export const loginAction = (accessToken) => async (dispatch) => {
             throw new ImmortalError(`http request fail,http status:${response.status}`, types.LOGIN_FAIL)
         }
         const replyData = await response.json()
-        debugger
-
         if (replyData.code !== SUCCESS_CODE) {
             if (response.status === HttpStatus.NO_PERMISSION) {
                 browserHistory.push("/login")
             }
             throw new ImmortalError(`login fail,for ${replyData.message}`, types.LOGIN_FAIL)
         }
-        const token = response.headers.get("access_token")
-        token && sessionStorage.setItem('access_token', token)
+        const token = response.headers.get("Authorization")
+        token && sessionStorage.setItem('Authorization', token)
         dispatch({type: types.LOGIN_SUCCESS, payload: replyData.data})
-        dispatch(goBack())
     } catch (e) {
         e = e instanceof ImmortalError ? e : new ImmortalError(e.message, LOGIN_ERROR)
         dispatch(e.transformAction())
