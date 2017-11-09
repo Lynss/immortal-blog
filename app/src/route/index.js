@@ -1,17 +1,23 @@
 import React from 'react'
-import {BrowserRouter, Route} from "react-router-dom"
-import {LoginContainer} from "../containers/index"
+import {BrowserRouter, Route,Switch} from "react-router-dom"
+import {LoginContainer, WelcomeContainer} from "../containers/index"
+import {authWrapper} from "../utils";
+
+const WrapWelcome = authWrapper(WelcomeContainer,LoginContainer)
 
 const route = history => {
-    return (
-        <div>
-            <main>
-                <BrowserRouter browserHistory={history}>
-                    <Route path={"/"} extra component={LoginContainer}/>
-                </BrowserRouter>
-            </main>
-        </div>
-    )
+	return (
+		<div>
+			<main>
+				<BrowserRouter browserHistory={history}>
+					<Switch>
+						<Route path={"/login"} extra component={LoginContainer}/>
+						<Route path={"/"} extra component={WrapWelcome}/>
+					</Switch>
+				</BrowserRouter>
+			</main>
+		</div>
+	)
 }
 
 export default route

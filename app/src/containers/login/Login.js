@@ -20,7 +20,7 @@ class LoginForm extends Component {
 		this.handleChange = handleChange.bind(this)
 	}
 
-	handleSubmit=()=> {
+	handleSubmit = () => {
 		const {handleLogin} = this.props
 		handleLogin(new AccessToken({
 			username: this.state.username,
@@ -32,7 +32,7 @@ class LoginForm extends Component {
 	render() {
 		const {loading, toggleRegisterModal} = this.props
 		return (
-			<div>
+			<div className="login-main">
 				<Form className="login-form">
 					<Item>
 						<Input prefix={<Icon type="user"/>} name="username"

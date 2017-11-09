@@ -1,3 +1,4 @@
 import handleChange from "./handleChange"
+import authWrapper from "./authWrapper"
 
-export {handleChange}
+export {handleChange,authWrapper,}

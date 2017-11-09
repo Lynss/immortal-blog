@@ -1,4 +1,4 @@
 import LoginContainer from "./login/loginContainer"
-import Register from "./register/Register"
+import WelcomeContainer from "./welcome/WelcomeContainer"
 
-export {LoginContainer,Register}
+export {LoginContainer,WelcomeContainer}
