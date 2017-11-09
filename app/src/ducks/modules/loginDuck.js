@@ -18,7 +18,7 @@ export const loginAction = (accessToken) => async (dispatch) => {
             method: "POST",
             headers: new Headers({
                 'Content-Type': 'application/json',
-                "Authorization": sessionStorage.getItem('Authorization') || "lueluelue"
+                "Authorization": sessionStorage.getItem('Authorization') || ""
             }),
             body: JSON.stringify(accessToken),
         }
@@ -29,7 +29,9 @@ export const loginAction = (accessToken) => async (dispatch) => {
         if (!response.ok) {
             throw new ImmortalError(`http request fail,http status:${response.status}`, types.LOGIN_FAIL)
         }
+        debugger
         const replyData = await response.json()
+        debugger
         if (replyData.code !== SUCCESS_CODE) {
             if (response.status === HttpStatus.NO_PERMISSION) {
                 browserHistory.push("/login")

@@ -3,9 +3,9 @@ package com.ly.immortalblog.domain.constant
 /**
  *@author ly
  */
-class AuthenticationConstatn{
+class AuthenticationConstatn {
     companion object {
-        val SIGN_KEY = "immortalBlog"
-        val TOKEN_PREFIX = "Bearer_"
+        const val SIGN_KEY = "immortalBlog"
+        const val TOKEN_PREFIX = "Bearer "
     }
 }

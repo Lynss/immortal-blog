@@ -10,20 +10,18 @@ import java.util.concurrent.Executors
 
 
 @Configuration
-@Import(DbConfig::class,MybatisConfig::class,SecurityConfig::class)
+@Import(DbConfig::class,MybatisConfig::class,SecurityConfig::class,CorsConfig::class)
 @EnableScheduling
 class ImmortalConfig {
 
     /**
      *spring-task多线程配置
      */
-    fun configureTasks() {
-        taskRegistrar().setScheduler(taskExecutor())
-    }
-
     @Bean
     fun taskRegistrar():ScheduledTaskRegistrar{
-        return ScheduledTaskRegistrar()
+        val scheduledTaskRegistrar = ScheduledTaskRegistrar()
+        scheduledTaskRegistrar.setScheduler(taskExecutor())
+        return scheduledTaskRegistrar
     }
 
     @Bean

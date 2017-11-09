@@ -1,11 +1,11 @@
 package com.ly.immortalblog.service.impl
 
 import com.ly.immortalblog.domain.ImmortalException
-import com.ly.immortalblog.domain.constant.enums.ImmortalExceptionEnum
+import com.ly.immortalblog.domain.constant.enums.ImmortalResultEnum
 import com.ly.immortalblog.domain.mapper.BasUserMapper
 import com.ly.immortalblog.domain.model.BasUserExample
-import org.springframework.beans.factory.config.ConfigurableBeanFactory
-import org.springframework.context.annotation.Scope
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
@@ -21,8 +21,8 @@ class ImmortalUserDetailsServiceImpl(val basUserMapper: BasUserMapper,
     override fun loadUserByUsername(userName: String?): UserDetails {
         basUserExample.or().andUsernameEqualTo(userName)
         val basUser = basUserMapper.selectByUsername(userName) ?:
-                throw ImmortalException(ImmortalExceptionEnum.IMMORTAL_AUTHENTICATION_USERNAME_ERROR)
-        return User(basUser.username, basUser.password, AuthorityUtils.createAuthorityList("ROLE_GUEST"))
+                throw ImmortalException(ImmortalResultEnum.IMMORTAL_AUTHENTICATION_USERNAME_ERROR)
+        return User(basUser.username, basUser.password, AuthorityUtils.createAuthorityList(basUser.role))
     }
 
 }
