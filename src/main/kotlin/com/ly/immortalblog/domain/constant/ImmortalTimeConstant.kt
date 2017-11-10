@@ -5,6 +5,6 @@ package com.ly.immortalblog.domain.constant
  */
 class ImmortalTimeConstant {
     companion object {
-        val NORMAL_TOKEN_EXIST = 10 * 24 * 60 * 60 * 1000 //一天
+        val NORMAL_TOKEN_EXIST = 10 * 24 * 60 * 60 * 1000.toLong()//token默认存储10天
     }
 }

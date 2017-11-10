@@ -1,24 +1,26 @@
 @import "../../style/center";
-.login-form {
-  width: 330px;
-  min-width:300px;
-  .rememberMe{
-    display: inline;
+@media screen and (min-width:600px){
+  .login-form {
+    width: 600px;
+    min-width:600px;
+    .rememberMe{
+      display: inline;
+    }
+    .forgot{
+      left: 100%;
+      position: sticky;
+    }
+    .register{
+    }
   }
-  .forgot{
-    left: 100%;
-    position: sticky;
-  }
-  .register{
-  }
-}
 
-.login-main {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-image: url("./loginBackGround.jpg");
-  @include centerLayout
+  .login-main {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url("./loginBackGround.jpg");
+    @include centerLayout
+  }
 }
 
 

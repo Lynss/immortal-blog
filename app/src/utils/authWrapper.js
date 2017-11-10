@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {connect} from 'react-redux'
 
-const  authenticate=(auths,needAuths)=>(!needAuths||!needAuths.length) || !needAuths.some(needAuth=> auths.indexOf(needAuth)===-1)
+const  authenticate=(auths,needAuths)=>(!needAuths||!needAuths.length) || !needAuths.some(needAuth=> !auths||auths.indexOf(needAuth)===-1)
 
 export default function authWrapper(ComposedComponent, NoAuthComponent,...needAuth) {
 	class WrapComponent extends Component {

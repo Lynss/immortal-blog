@@ -1,6 +1,7 @@
 package  com.ly.immortalblog.config
 
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import org.springframework.scheduling.annotation.EnableScheduling
@@ -11,6 +12,7 @@ import java.util.concurrent.Executors
 
 @Configuration
 @Import(DbConfig::class,MybatisConfig::class,SecurityConfig::class,CorsConfig::class)
+@ComponentScan(basePackages = arrayOf("com.ly.immortalblog.utils","com.ly.immortalblog.config.filter"))
 @EnableScheduling
 class ImmortalConfig {
 

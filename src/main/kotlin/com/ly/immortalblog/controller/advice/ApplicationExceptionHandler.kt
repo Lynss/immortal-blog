@@ -8,12 +8,14 @@ import java.lang.Exception
 @ControllerAdvice
 class ApplicationExceptionHandler{
     @ExceptionHandler(Exception::class)
-    fun exceptionHandler() {
+    fun exceptionHandler(e:Exception) {
+        e.printStackTrace()
         println("handle success")
     }
 
     @ExceptionHandler(ImmortalException::class)
-    fun immortalExceptionHandler() {
+    fun immortalExceptionHandler(e:ImmortalException) {
+        e.printStackTrace()
         println("handle success")
     }
 }

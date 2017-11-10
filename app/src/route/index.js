@@ -3,7 +3,7 @@ import {BrowserRouter, Route,Switch} from "react-router-dom"
 import {LoginContainer, WelcomeContainer} from "../containers/index"
 import {authWrapper} from "../utils";
 
-const WrapWelcome = authWrapper(WelcomeContainer,LoginContainer)
+const WrapWelcome = authWrapper(WelcomeContainer,LoginContainer,"guest")
 
 const route = history => {
 	return (

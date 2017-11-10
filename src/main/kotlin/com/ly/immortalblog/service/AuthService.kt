@@ -7,4 +7,5 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
  *@author ly
  */
 interface AuthService {
+    fun loginAndCreateToken(username:String,password:String):ImmortalResult<String>
 }

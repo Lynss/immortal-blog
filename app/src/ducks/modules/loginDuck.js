@@ -25,21 +25,21 @@ export const loginAction = (accessToken) => async (dispatch) => {
     )
     try {
         const response = await fetch(request)
-        debugger
         if (!response.ok) {
             throw new ImmortalError(`http request fail,http status:${response.status}`, types.LOGIN_FAIL)
         }
-        debugger
         const replyData = await response.json()
-        debugger
         if (replyData.code !== SUCCESS_CODE) {
-            if (response.status === HttpStatus.NO_PERMISSION) {
+            if (response.status === HttpStatus.ACCESS_DENY) {
                 browserHistory.push("/login")
+            }else if(response.status === HttpStatus.NO_PERMISSION) {
+                //...
             }
             throw new ImmortalError(`login fail,for ${replyData.message}`, types.LOGIN_FAIL)
         }
         const token = response.headers.get("Authorization")
         token && sessionStorage.setItem('Authorization', token)
+        // token && localStorage.setItem('Authorization', token) rememberMe的时候可以这样提交
         dispatch({type: types.LOGIN_SUCCESS, payload: replyData.data})
     } catch (e) {
         e = e instanceof ImmortalError ? e : new ImmortalError(e.message, LOGIN_ERROR)

@@ -4,8 +4,6 @@ import com.ly.immortalblog.domain.ImmortalException
 import com.ly.immortalblog.domain.constant.enums.ImmortalResultEnum
 import com.ly.immortalblog.domain.mapper.BasUserMapper
 import com.ly.immortalblog.domain.model.BasUserExample
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
